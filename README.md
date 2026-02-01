@@ -235,3 +235,118 @@ with open("WhatsApp-Chat_with_person.txt", "r", encoding="utf-8") as f:
 - Assumes a specific WhatsApp export format
 - Media messages are treated as plain text
 - No timezone normalization
+
+---
+# `instagram_follower_comparison\` Folder
+
+## Instagram Followers vs Following Comparison Script
+
+`compare_following_follower.py`
+
+## Overview
+
+This script compares **Instagram followers and followings** using the HTML files exported from Instagram.  
+It extracts usernames from the exported HTML files and identifies:
+
+- people who **follow you but you do not follow back**
+- people you **follow but who do not follow you back**
+
+The results are printed to the console in human-readable format.
+
+---
+
+## Prerequisites
+
+### 1. Instagram data export
+
+You must download your Instagram account data from Meta.
+
+**How to download:**
+1. Instagram -> Settings
+2. Accounts Center -> Your information and permissions
+3. Download your information
+4. Request download (HTML format)
+5. Extract the archive
+
+You should find files similar to:
+
+```text
+followers_1.html
+following.html
+```
+
+---
+
+### 2. File locations
+
+The script expects these files to be located in the **same directory** as the script:
+
+```python
+followers_file = "followers_1.html"
+followings_file = "following.html"
+```
+
+Update these paths if your files differ.
+
+---
+
+### 3. Supported HTML structure
+
+The script assumes usernames appear as text inside `<a>` tags:
+
+```html
+<a href="https://www.instagram.com/username/">username</a>
+```
+
+If Instagram changes the export format, the extraction logic must be adapted.
+
+---
+
+## Dependencies
+
+Install required Python packages:
+
+```bash
+pip install beautifulsoup4
+```
+
+---
+
+## What the script does
+
+1. Reads the followers and following HTML files
+2. Parses them using BeautifulSoup
+3. Extracts usernames from all `<a>` tags
+4. Compares followers vs followings
+5. Prints:
+   - total follower count
+   - total following count
+   - users not followed back
+   - users not following back
+
+---
+
+## Output
+
+### Console output
+
+- Number of followers
+- Number of followings
+- Numbered lists for:
+  - Followers you don’t follow back
+  - Followings that don’t follow you back
+
+---
+
+## Where to change things
+
+### Input files
+
+```python
+followers_file = "followers_1.html"
+followings_file = "following.html"
+```
+
+---
+
+
